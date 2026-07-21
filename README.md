@@ -1,7 +1,19 @@
-<h1 align="center">lldap - Light LDAP implementation for authentication</h1>
+<h1 align="center">mitch-lldap</h1>
 
 <p align="center">
-<i style="font-size:24px">LDAP made easy.</i>
+<i style="font-size:24px">A personal fork of lldap — Light LDAP, customized.</i>
+</p>
+
+> **This is a fork** of [lldap/lldap](https://github.com/lldap/lldap) maintained by [mitchelljfranklin](https://github.com/mitchelljfranklin). It regularly pulls in patches and features from upstream, but also includes customizations and changes that are not intended for the upstream project.
+>
+> **Container image:** `ghcr.io/mitchelljfranklin/mitch-lldap:latest`
+
+---
+
+<h3 align="center">lldap - Light LDAP implementation for authentication</h3>
+
+<p align="center">
+<i style="font-size:18px">LDAP made easy.</i>
 </p>
 
 <p align="center">
