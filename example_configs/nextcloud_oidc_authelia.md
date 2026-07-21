@@ -87,4 +87,4 @@ If this is set to *true* then the user flow will _skip_ the login page and autom
 ### Conclusion
 And that's it! Assuming all the settings that worked for me, work for you, you should be able to login using OpenID Connect via Authelia. If you find any errors, it's a good idea to keep a document of all your settings from Authelia/Nextcloud/LLDAP etc so that you can easily reference and ensure everything lines up.
 
-If you have any issues, please create a [discussion](https://github.com/lldap/lldap/discussions) or join the [Discord](https://discord.gg/h5PEdRMNyP).
+If you have any issues, please open an issue on [GitHub](https://github.com/mitchelljfranklin/mitch-lldap/issues).

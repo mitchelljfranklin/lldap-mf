@@ -1,7 +1,7 @@
 # Frequently Asked Questions
 
 - [I can't login](#i-cant-log-in)
-- [Discord Integration](#discord-integration)
+- [Discord Integration (upstream)](#discord-integration)
 - [Migrating from SQLite](#migrating-from-sqlite)
 - How does LLDAP compare [with OpenLDAP](#how-does-lldap-compare-with-openldap)? [With FreeIPA](#how-does-lldap-compare-with-freeipa)? [With Kanidm](#how-does-lldap-compare-with-kanidm)?
 - [Does LLDAP support vhosts?](#does-lldap-support-vhosts)
