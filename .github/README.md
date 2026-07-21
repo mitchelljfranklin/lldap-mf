@@ -12,6 +12,7 @@
   <a href="https://github.com/mitchelljfranklin/mitch-lldap/pkgs/container/mitch-lldap">
     <img src="https://img.shields.io/badge/container-ghcr-blue?logo=github" alt="Container"/>
   </a>
+  <img src="https://img.shields.io/github/v/release/mitchelljfranklin/mitch-lldap?label=release" alt="Release"/>
   <img src="https://img.shields.io/badge/platform-amd64%20%7C%20arm64-blue?logo=raspberrypi" alt="Platforms"/>
   <img src="https://img.shields.io/badge/license-GPL--3.0-green" alt="License"/>
   <img src="https://img.shields.io/badge/MSRV-1.91.0-orange?logo=rust" alt="MSRV"/>
@@ -21,67 +22,41 @@
 
 ## Quick-start
 
-```yaml
-# docker-compose.yml
-services:
-  lldap:
-    image: ghcr.io/mitchelljfranklin/mitch-lldap:latest
-    ports:
-      - "17170:17170"
-    volumes:
-      - lldap_data:/data
-    environment:
-      - UID=10001
-      - GID=10001
-      - LLDAP_JWT_SECRET=REPLACE_WITH_RANDOM
-      - LLDAP_LDAP_BASE_DN=dc=example,dc=com
-      - LLDAP_LDAP_USER_PASS=REPLACE_WITH_PASSWORD
-
-volumes:
-  lldap_data:
-```
-
 ```bash
-docker compose up -d
-# Open http://localhost:17170 — log in with admin / your password
+docker pull ghcr.io/mitchelljfranklin/mitch-lldap:latest
+# Continue to the full compose + env vars below
 ```
 
-See [Install & configure](#install--configure) for the full reference.
+[Jump to install & configure](#install--configure)
 
 ---
 
 ## Why mitch-lldap?
 
-| Feature | Description |
+| This fork adds | Built on upstream lldap |
 |---|---|
-| Branding UI | Set app name, upload a logo, pick accent colors — all from the admin panel |
-| Dark mode | System-aware, persisted to localStorage, applied before first paint |
-| Multi-arch | Runs on x86_64 and ARM64 (Raspberry Pi 3B+, 4, 5) |
-| Bootstrap 5.3 | Modern, responsive UI with CSS design tokens and variable-driven theming |
-| OPAQUE auth | Zero-knowledge password proof — your password never leaves your browser |
-| Multiple backends | SQLite (default), PostgreSQL, MariaDB / MySQL |
-| LDAP made easy | No `slapd` configs. Simple web UI for users, groups, and attributes |
+| **Branding UI** — app name, logo, accent colors from the admin panel | **OPAQUE auth** — zero-knowledge password proof |
+| **Dark mode** — system-aware, persisted, applied before first paint | **Multi-DB** — SQLite, PostgreSQL, MariaDB / MySQL |
+| **Multi-arch** — amd64 + arm64 (Raspberry Pi 3B+, 4, 5) | **Simple LDAP** — no slapd configs, web UI for users & groups |
+| **Bootstrap 5.3** — CSS tokens, variable-driven theming | **GraphQL API + CLI** — scriptable, integrates with everything |
 
-Everything else — GraphQL API, CLI tools, service integrations — stays in sync with upstream lldap.
+Everything else — Terraform provider, OIDC bridges, PAM integration — stays in sync with upstream.
 
 ---
 
 ## Screenshots
 
 <p align="center">
-  <em>Login page with dark mode and custom branding</em><br/>
-  <img src="docs/screenshots/login.png" alt="Login page" width="45%"/>
+  <em>Screenshots coming soon — PR in progress</em>
 </p>
 
-<p align="center">
-  <em>Admin dashboard with custom app name and accent color</em><br/>
-  <img src="docs/screenshots/dashboard.png" alt="Dashboard" width="45%"/>
-</p>
-
-<p align="center">
-  <em>Branding settings — name, logo, colors, default theme</em><br/>
-  <img src="docs/screenshots/settings.png" alt="Admin settings" width="45%"/>
-</p>
+<table>
+  <tr>
+    <td><img src="docs/screenshots/login.png" alt="Login page" width="100%"/><br/><sub>Login page with dark mode</sub></td>
+    <td><img src="docs/screenshots/dashboard.png" alt="Dashboard" width="100%"/><br/><sub>Admin dashboard</sub></td>
+    <td><img src="docs/screenshots/settings.png" alt="Settings" width="100%"/><br/><sub>Branding settings</sub></td>
+  </tr>
+</table>
 
 ---
 
@@ -95,6 +70,7 @@ The image is published at `ghcr.io/mitchelljfranklin/mitch-lldap`. Available tag
 services:
   lldap:
     image: ghcr.io/mitchelljfranklin/mitch-lldap:latest
+    restart: unless-stopped
     ports:
       - "17170:17170"   # Web UI
       # - "3890:3890"   # LDAP (only if services need direct LDAP access)
@@ -103,6 +79,8 @@ services:
     environment:
       - UID=10001
       - GID=10001
+      - TZ=UTC
+      # Generate secrets: ./generate_secrets.sh
       - LLDAP_JWT_SECRET=            # required — generate with ./generate_secrets.sh
       - LLDAP_KEY_SEED=              # optional — if set, delete any existing server_key* files
       - LLDAP_LDAP_BASE_DN=dc=example,dc=com
@@ -125,6 +103,7 @@ volumes:
 ### From source
 
 ```bash
+cargo install wasm-pack
 cargo build --release -p lldap
 ./app/build.sh                     # builds WASM frontend
 cargo run -- run --config-file lldap_config.toml
@@ -141,10 +120,11 @@ For other platforms (Kubernetes, TrueNAS, distribution packages) see the [upstre
 | `LLDAP_JWT_SECRET` | Yes | — | Generate with `./generate_secrets.sh` |
 | `LLDAP_LDAP_USER_PASS` | Yes | — | Admin password on first run |
 | `LLDAP_LDAP_BASE_DN` | No | `dc=example,dc=com` | Your LDAP base DN |
-| `LLDAP_HTTP_URL` | No | — | Public URL (used in password reset emails) |
 | `LLDAP_DATABASE_URL` | No | `sqlite://users.db?mode=rwc` | Postgres / MySQL / MariaDB URL |
-| `LLDAP_LDAP_PORT` | No | `3890` | LDAP server port |
 | `LLDAP_HTTP_PORT` | No | `17170` | Web UI port |
+| `LLDAP_LDAP_PORT` | No | `3890` | LDAP server port |
+| `LLDAP_HTTP_URL` | No | — | Public URL (used in password reset emails) |
+| `TZ` | No | `UTC` | Timezone for log timestamps |
 | `LLDAP_VERBOSE` | No | `false` | Enable verbose logging |
 | `LLDAP_KEY_SEED` | No | — | Encryption key seed |
 | `LLDAP_SMTP_OPTIONS__ENABLE_PASSWORD_RESET` | No | `false` | Enable SMTP password reset |
@@ -173,6 +153,7 @@ All config values from `lldap_config.toml` can be overridden as `LLDAP_<SECTION>
 
 - **Fork features** — branch off `mitch-lldap`, open a PR targeting `mitch-lldap`
 - **Upstream features** — branch off `main`, PR to [lldap/lldap](https://github.com/lldap/lldap)
+- **Issues** — fork-specific bugs → this repo; general lldap issues → [upstream](https://github.com/lldap/lldap/issues)
 - See [AGENTS.md](AGENTS.md) for local dev setup, build commands, and code style
 
 ---
