@@ -13,7 +13,7 @@
 
 ### With Docker
 
-The image is available at `lldap/lldap`. You should persist the `/data`
+The image is available at `ghcr.io/mitchelljfranklin/mitch-lldap`. You should persist the `/data`
 folder, which contains your configuration and the SQLite database (you can
 remove this step if you use a different DB and configure with environment
 variables only).
@@ -36,8 +36,8 @@ contents are loaded into the respective configuration parameters. Note that
 Example for docker compose:
 
 - You can use either the `:latest` tag image or `:stable` as used in this example.
-- `:latest` tag image contains recently pushed code or feature tests, in which some instability can be expected.
-- If `UID` and `GID` no defined LLDAP will use default `UID` and `GID` number `1000`.
+- `:latest` is rebuilt on each release and is the recommended tag for most users.
+- If `UID` and `GID` not defined LLDAP will use default `UID` and `GID` number `1000`.
 - If no `TZ` is set, default `UTC` timezone will be used.
 - You can generate the secrets by running `./generate_secrets.sh`
 
@@ -50,7 +50,7 @@ volumes:
 
 services:
   lldap:
-    image: lldap/lldap:stable
+    image: ghcr.io/mitchelljfranklin/mitch-lldap:latest
     ports:
       # For LDAP, not recommended to expose, see Usage section.
       #- "3890:3890"

@@ -2,9 +2,9 @@
 
 ## Did you find a bug?
 
- - Make sure there isn't already an [issue](https://github.com/lldap/lldap/issues?q=is%3Aissue+is%3Aopen) for it.
+ - Make sure there isn't already an [issue](https://github.com/mitchelljfranklin/mitch-lldap/issues?q=is%3Aissue+is%3Aopen) for it.
  - Check if the bug still happens with the `latest` docker image, or the `main` branch if you compile it yourself.
- - [Create an issue](https://github.com/lldap/lldap/issues/new) on GitHub. What makes a great issue:
+ - [Create an issue](https://github.com/mitchelljfranklin/mitch-lldap/issues/new) on GitHub. What makes a great issue:
    - A quick summary of the bug.
    - Steps to reproduce.
    - LLDAP _verbose_ logs when reproducing the bug. Verbose mode can be set through environment variables (`LLDAP_VERBOSE=true`) or in the config (`verbose = true`).
@@ -14,17 +14,17 @@
 
 ## Are you requesting integration with a new service?
 
- - Check if there is already an [example config](https://github.com/lldap/lldap/tree/main/example_configs) for it.
+ - Check if there is already an [example config](https://github.com/mitchelljfranklin/mitch-lldap/tree/main/example_configs) for it.
  - Try to figure out the configuration values for the new service yourself.
    - You can use other example configs for inspiration.
-   - If you're having trouble, you can ask on [Discord](https://discord.gg/h5PEdRMNyP)
+   - If you're having trouble, open an issue on the [GitHub repository](https://github.com/mitchelljfranklin/mitch-lldap/issues)
    - If you succeed, make sure to contribute an example configuration, or a configuration guide.
  - If you hit a block because of an unimplemented feature, go to the next section.
 
 ## Are you asking for a new feature?
 
- - Make sure there isn't already an [issue](https://github.com/lldap/lldap/issues?q=is%3Aissue+is%3Aopen) for it.
- - [Create an issue](https://github.com/lldap/lldap/issues/new) on GitHub. What makes a great feature request:
+ - Make sure there isn't already an [issue](https://github.com/mitchelljfranklin/mitch-lldap/issues?q=is%3Aissue+is%3Aopen) for it.
+ - [Create an issue](https://github.com/mitchelljfranklin/mitch-lldap/issues/new) on GitHub. What makes a great feature request:
    - A quick summary of the feature.
    - Motivation: what problem does the feature solve?
    - Workarounds: what are the currently possible solutions to the problem, however bad?
@@ -40,13 +40,13 @@ service: it can be an example configuration file, or a markdown guide
 explaining the steps necessary to configure the service.
 
 We also have some 
-[documentation](https://github.com/lldap/lldap/tree/main/docs) with more
+[documentation](https://github.com/mitchelljfranklin/mitch-lldap/tree/main/docs) with more
 advanced guides (scripting, migrations, ...) you can contribute to.
 
 ### Code
 
 If you don't know what to start with, check out the 
-[good first issues](https://github.com/lldap/lldap/labels/good%20first%20issue).
+[good first issues](https://github.com/lldap/lldap/labels/good%20first%20issue) in the upstream project, or any open issues in this repository.
 
 For an alternative development environment setup, see [docs/nix-development.md](docs/nix-development.md). 
 

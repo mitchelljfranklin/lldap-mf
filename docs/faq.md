@@ -29,8 +29,7 @@ set isn't working, try the following:
   for docker) has the rights to write to the `/data` folder. If in doubt, you
   can `chmod 777 /data` (or whatever the folder) to make it world-writeable.
 - Make sure you restart the server.
-- If it's still not working, join the
-  [Discord server](https://discord.gg/h5PEdRMNyP) to ask for help.
+- If it's still not working, open an issue on the [GitHub repository](https://github.com/mitchelljfranklin/mitch-lldap/issues).
 
 ## Discord Integration
 
@@ -103,7 +102,7 @@ LLDAP is free-software (under a copyleft GPL 3.0 license) and anyone can provide
 
 ## Can I make a donation to fund development?
 
-You can make a donation on [buymeacoffee.com/nitnelave](https://buymeacoffee.com/nitnelave) to personally support @nitnelave, the maintainer and main developer of the project.
+You can make a donation on [buymeacoffee.com/nitnelave](https://buymeacoffee.com/nitnelave) to personally support @nitnelave, the upstream maintainer of LLDAP.
 
 It's not a goal for them to raise enough money to be employed to work on LLDAP. As of July 2025, the donations (<100€/month) are not sufficient anyway to employ people to work on LLDAP, even part-time.
 
