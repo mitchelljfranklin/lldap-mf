@@ -1,3 +1,4 @@
+#![cfg(unix)]
 use std::collections::HashSet;
 
 use crate::common::{

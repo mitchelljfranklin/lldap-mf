@@ -1,3 +1,4 @@
+#![cfg(unix)]
 use std::collections::{HashMap, HashSet};
 
 use crate::common::{

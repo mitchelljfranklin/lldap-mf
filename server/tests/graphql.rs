@@ -1,3 +1,4 @@
+#![cfg(unix)]
 use crate::common::{
     auth::get_token,
     env,
