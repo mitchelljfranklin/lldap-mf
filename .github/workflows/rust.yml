@@ -90,7 +90,7 @@ jobs:
     needs:
       - pre_job
       - test
-    if: ${{ needs.pre_job.outputs.should_skip != 'true' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
+    if: ${{ (needs.pre_job.outputs.should_skip != 'true' || (github.event_name == 'push' && github.ref == 'refs/heads/main')) && github.repository == 'lldap/lldap' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
