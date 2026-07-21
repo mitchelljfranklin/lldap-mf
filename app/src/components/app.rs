@@ -326,7 +326,7 @@ impl App {
         html! {
           <footer class="app-footer text-center mt-4">
             <div>
-              <span>{format!("LLDAP version {}", env!("CARGO_PKG_VERSION"))}</span>
+              <span>{format!("mitch-lldap v{}", env!("CARGO_PKG_VERSION"))}</span>
             </div>
             <div>
               <a href="https://github.com/mitchelljfranklin/mitch-lldap" aria-label="GitHub">

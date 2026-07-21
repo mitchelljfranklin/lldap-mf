@@ -1,13 +1,9 @@
 name: Docker Build (Fork)
 
 on:
-  push:
-    branches:
-      - 'mitch-lldap'
-    paths-ignore:
-      - 'docs/**'
-      - 'example_configs/**'
-      - '**/*.md'
+  release:
+    types:
+      - 'published'
   workflow_dispatch:
 
 env:
@@ -43,9 +39,11 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository_owner }}/mitch-lldap
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=sha,prefix=,format=short
-            type=ref,event=branch
+            type=semver,pattern=v{{version}}
+            type=semver,pattern=v{{major}}
+            type=semver,pattern=v{{major}}.{{minor}}
+            type=raw,value=latest
+            type=sha,format=short
             type=raw,value={{date 'YYYY-MM-DD'}}
 
       - name: Build and push Docker image
