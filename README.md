@@ -1,12 +1,27 @@
 <h1 align="center">mitch-lldap</h1>
 
 <p align="center">
-<i style="font-size:24px">A personal fork of lldap — Light LDAP, customized.</i>
+<i style="font-size:24px">A fork of lldap — Light LDAP</i>
 </p>
 
 > **This is a fork** of [lldap/lldap](https://github.com/lldap/lldap) maintained by [mitchelljfranklin](https://github.com/mitchelljfranklin). It regularly pulls in patches and features from upstream, but also includes customizations and changes that are not intended for the upstream project.
 >
 > **Container image:** `ghcr.io/mitchelljfranklin/mitch-lldap:latest`
+
+## What's the difference?
+
+This fork adds customization features not present upstream, focused on making the
+application yours:
+
+- **Branding** — Customize the application name, logo, and colors directly from
+  the web UI. No need to rebuild assets or dig into source code.
+- **Theme support** — Apply and switch between visual themes to match your
+  environment or preference, all configurable through the user interface.
+- **UI flexibility** — Additional frontend tweaks and options that wouldn't fit
+  upstream's minimal scope, giving you more control over the look and feel.
+
+Everything else — the core authentication engine, LDAP interface, database
+backends, and service compatibility — stays in sync with upstream.
 
 ---
 
