@@ -6,7 +6,6 @@
 - How does LLDAP compare [with OpenLDAP](#how-does-lldap-compare-with-openldap)? [With FreeIPA](#how-does-lldap-compare-with-freeipa)? [With Kanidm](#how-does-lldap-compare-with-kanidm)?
 - [Does LLDAP support vhosts?](#does-lldap-support-vhosts)
 - [Does LLDAP provide commercial support contracts?](#does-lldap-provide-commercial-support-contracts)
-- [Can I make a donation to fund development?](#can-i-make-a-donation-to-fund-development)
 - [Is LLDAP sustainable? Can we depend on it for our infrastructure?](#is-lldap-sustainable-can-we-depend-on-it-for-our-infrastructure)
 
 ## I can't log in!
@@ -99,12 +98,6 @@ LLDAP is very lightweight (~15MiB RAM on startup) and it's therefore possible to
 LLDAP does not provide commercial support. It's provided as volunteer-developed free-software on a best-effort basis. If that's not ideal for you, you should probably consider using a professional all-in-one solution such as OpenLDAP, FreeIPA, or Kanidm.
 
 LLDAP is free-software (under a copyleft GPL 3.0 license) and anyone can provide consultancy and support contracts for the software. However, the LLDAP project currently does not endorse any 3rd party to provide such services in an official manner. This may be revised in the future if developers from the community step up and provide amazing services.
-
-## Can I make a donation to fund development?
-
-You can make a donation on [buymeacoffee.com/nitnelave](https://buymeacoffee.com/nitnelave) to personally support @nitnelave, the upstream maintainer of LLDAP.
-
-It's not a goal for them to raise enough money to be employed to work on LLDAP. As of July 2025, the donations (<100€/month) are not sufficient anyway to employ people to work on LLDAP, even part-time.
 
 ## Is LLDAP sustainable? Can we depend on it for our infrastructure?
 
