@@ -42,6 +42,7 @@ cargo clippy --tests --all -- -D warnings  # ~90s, timeout 120s
 ```sh
 ./export_schema.sh               # ~80s, timeout 120s
 ```
+This regenerates `schema.graphql` (checked into git). The `rust.yml` workflow diffs it against a fresh export and fails if stale.
 
 ## Gotchas
 
@@ -54,6 +55,7 @@ cargo clippy --tests --all -- -D warnings  # ~90s, timeout 120s
 - **Codecov job in CI** only runs on `lldap/lldap` — skipped on forks.
 - **Database schema** auto-migrates at startup (SeaORM). No manual migration needed.
 - **Multi-DB**: SQLite (default), PostgreSQL, and MariaDB/MySQL are all supported. Any DB schema or query changes must work across all three backends. SeaORM abstracts most differences, but raw SQL, migration scripts, and conflict handlers must be backend-compatible. Test migrations against all backends when possible.
+- **`Cargo.lock` on Windows** may resolve differently than Linux CI. If `cargo build` fails unexpectedly on Windows, run `cargo update` to refresh the lockfile.
 
 ## Architecture
 
@@ -86,6 +88,12 @@ The `main` branch tracks upstream and has a stripped-down Bootstrap upgrade read
 - Root `Dockerfile` — standalone multi-stage build, compiles everything from source
 - `.github/workflows/Dockerfile.ci.multiarch` — CI image, pre-built binaries via `cross`
 - Fork workflow triggers on **release published** or **manual dispatch** only
+- For local Docker dev: `docker run -e LLDAP_JWT_SECRET=secret -e LLDAP_LDAP_USER_PASS=pass -p 17170:17170 -v lldap_data:/data mitch-lldap:test`
+
+## CI
+
+- **`rust.yml`** — build, test, clippy, fmt, and GraphQL schema check. Triggers on `main` and `mitch-lldap` branches.
+- **`docker-build-fork.yml`** — container publish to `ghcr.io/mitchelljfranklin/mitch-lldap`. Triggers on release published or manual dispatch.
 
 ## Quality gates
 
