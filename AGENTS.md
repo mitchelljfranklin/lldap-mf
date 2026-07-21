@@ -10,6 +10,24 @@ Fork of [lldap/lldap](https://github.com/lldap/lldap) — Light LDAP server with
 - **Container**: `ghcr.io/mitchelljfranklin/mitch-lldap`
 - **Dual README**: `.github/README.md` (fork — displayed on repo) / `README.md` (root — upstream, avoid editing)
 
+## Branch structure
+
+- **`main`** — tracks `upstream/main`. Fork-only changes should not land here.
+- **`mitch-lldap`** — fork's deployment branch (default, protected — requires PRs).
+- All new features intended for upstream: branch off `main`.
+- All fork-only features: branch off `mitch-lldap`.
+
+## Upstream sync routine
+
+```bash
+git checkout main
+git pull upstream main
+git push origin main
+git checkout mitch-lldap
+git merge main  # resolve conflicts, keep both upstream + fork changes
+cargo build --workspace  # verify merge
+```
+
 ## Build & verify
 
 ```sh
@@ -67,3 +85,22 @@ The `main` branch tracks upstream and has a stripped-down Bootstrap upgrade read
 - Root `Dockerfile` — standalone multi-stage build, compiles everything from source
 - `.github/workflows/Dockerfile.ci.multiarch` — CI image, pre-built binaries via `cross`
 - Fork workflow triggers on **release published** or **manual dispatch** only
+
+## Quality gates
+
+Before considering work done:
+
+- **No stubs.** No `TODO`/`FIXME`, no empty/throwing function bodies, no dead or commented-out code. Intentional empty states must be clearly labelled.
+- **Lint + build clean.** `cargo fmt --all --check`, `cargo clippy --tests --all -- -D warnings`, and `cargo build --workspace` must pass. For frontend changes, `./app/build.sh` must also pass.
+- **Types are explicit.** No `unwrap()` or `expect()` without justification. Validate external input. Use `thiserror` for structured errors.
+- **Tests pass.** `cargo test --workspace --lib` must pass. Integration tests (Unix-only) pass on CI.
+
+## Code style
+
+- **No comments unless explicitly requested.** Clarity comes from names and structure, not comments. When a comment is requested, explain *why*, not *what*.
+- **Full descriptive names.** `calculate_display_name`, not `calc_nm`. Variables are noun phrases, functions are verb phrases. Single-letter variables only in closure parameters (`|x|`) and loop indices.
+- **One thought per line.** Break chained operations into intermediate variables with descriptive names. No dense one-liners.
+- **Early returns over deep nesting.** Use guard clauses and `let-else`. Functions should read top-to-bottom.
+- **No over-engineered abstractions.** Don't create a trait for a two-method type used once. Every abstraction must reduce total cognitive load.
+- **Duplicate code is noise.** If logic appears in two places, extract it into a shared location.
+- **Match existing conventions.** When editing a file, mimic its import style, error handling pattern, and naming. Don't introduce a different pattern in the same module.
