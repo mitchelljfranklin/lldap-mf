@@ -1,7 +1,34 @@
-<h1 align="center">lldap - Light LDAP implementation for authentication</h1>
+<h1 align="center">mitch-lldap</h1>
 
 <p align="center">
-<i style="font-size:24px">LDAP made easy.</i>
+<i style="font-size:24px">A fork of lldap — Light LDAP</i>
+</p>
+
+> **This is a fork** of [lldap/lldap](https://github.com/lldap/lldap) maintained by [mitchelljfranklin](https://github.com/mitchelljfranklin). It regularly pulls in patches and features from upstream, but also includes customizations and changes that are not intended for the upstream project.
+>
+> **Container image:** `ghcr.io/mitchelljfranklin/mitch-lldap:latest`
+
+## What's the difference?
+
+This fork adds customization features not present upstream, focused on making the
+application yours:
+
+- **Branding** — Customize the application name, logo, and colors directly from
+  the web UI. No need to rebuild assets or dig into source code.
+- **Theme support** — Apply and switch between visual themes to match your
+  environment or preference, all configurable through the user interface.
+- **UI flexibility** — Additional frontend tweaks and options that wouldn't fit
+  upstream's minimal scope, giving you more control over the look and feel.
+
+Everything else — the core authentication engine, LDAP interface, database
+backends, and service compatibility — stays in sync with upstream.
+
+---
+
+<h3 align="center">lldap - Light LDAP implementation for authentication</h3>
+
+<p align="center">
+<i style="font-size:18px">LDAP made easy.</i>
 </p>
 
 <p align="center">
@@ -10,26 +37,10 @@
       src="https://github.com/lldap/lldap/actions/workflows/rust.yml/badge.svg"
       alt="Build"/>
   </a>
-  <a href="https://discord.gg/h5PEdRMNyP">
-    <img alt="Discord" src="https://img.shields.io/discord/898492935446876200?label=discord&logo=discord" />
-  </a>
-
-  <a href="https://twitter.com/nitnelave1?ref_src=twsrc%5Etfw">
-    <img
-      src="https://img.shields.io/twitter/follow/nitnelave1?style=social"
-      alt="Twitter Follow"/>
-  </a>
   <a href="https://github.com/rust-secure-code/safety-dance/">
     <img
       src="https://img.shields.io/badge/unsafe-forbidden-success.svg"
       alt="Unsafe forbidden"/>
-  </a>
-  <a href="https://app.codecov.io/gh/lldap/lldap">
-    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/lldap/lldap" />
-  </a>
-  <br/>
-  <a href="https://www.buymeacoffee.com/nitnelave" target="_blank">
-    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" >
   </a>
 </p>
 
@@ -123,11 +134,7 @@ If you are using containers, a sample architecture could look like this:
     internet (not recommended) or for an extra layer of security in the
     inter-container communication (though it's very much optional).
   - The default LLDAP container starts up as root to fix up some files'
-    permissions before downgrading the privilege to the given user. However,
-    you can (should?) use the `*-rootless` version of the images to be able to
-    start directly as that user, once you got the permissions right. Just don't
-    forget to change from the `UID/GID` env vars to the `uid` docker-compose
-    field.
+    permissions before downgrading the privilege to the given user.
 - Any other service that needs to connect to LLDAP for authentication (e.g.
   NextCloud) can be added to a shared network with LLDAP. The finest
   granularity is a network for each pair of LLDAP-service, but there are often
@@ -198,12 +205,11 @@ service that seems definitely incompatible with LLDAP.
 ## Frequently Asked Questions
 
 - [I can't login](docs/faq.md#i-cant-log-in)
-- [Discord Integration](docs/faq.md#discord-integration)
+- [Discord Integration](docs/faq.md#discord-integration) (upstream)
 - [Migrating from SQLite](docs/faq.md#migrating-from-sqlite)
 - How does lldap compare [with OpenLDAP](docs/faq.md#how-does-lldap-compare-with-openldap)? [With FreeIPA](docs/faq.md#how-does-lldap-compare-with-freeipa)? [With Kanidm](docs/faq.md#how-does-lldap-compare-with-kanidm)?
 - [Does lldap support vhosts?](docs/faq.md#does-lldap-support-vhosts)
 - [Does lldap provide commercial support contracts?](docs/faq.md#does-lldap-provide-commercial-support-contracts)
-- [Can I make a donation to fund development?](docs/faq.md#can-i-make-a-donation-to-fund-development)
 - [Is lldap sustainable? Can we depend on it for our infrastructure?](docs/faq.md#is-lldap-sustainable-can-we-depend-on-it-for-our-infrastructure)
 
 ## Contributions
@@ -217,5 +223,4 @@ Make sure that you run `cargo fmt` from the root before creating the PR. And if
 you change the GraphQL interface, you'll need to regenerate the schema by
 running `./export_schema.sh`.
 
-Join our [Discord server](https://discord.gg/h5PEdRMNyP) if you have any
-questions!
+If you have any questions, feel free to open an issue on this repository.
