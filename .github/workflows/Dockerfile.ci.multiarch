@@ -37,6 +37,7 @@ COPY docker-entrypoint.sh lldap_config.docker_template.toml ./
 COPY scripts/bootstrap.sh ./
 
 RUN set -x \
+    && chmod +x /app/lldap /app/lldap_migration_tool /app/lldap_set_password /app/docker-entrypoint.sh /app/bootstrap.sh \
     && apk add --no-cache bash tzdata \
     && for file in $(cat app/static/libraries.txt); do wget -P app/static "$file"; done \
     && for file in $(cat app/static/fonts/fonts.txt); do wget -P app/static/fonts "$file"; done \
