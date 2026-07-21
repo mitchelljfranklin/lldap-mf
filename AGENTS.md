@@ -53,6 +53,7 @@ cargo clippy --tests --all -- -D warnings  # ~90s, timeout 120s
 - **MSRV**: 1.91.0 (both CI and Cargo.toml `rust-version`).
 - **Codecov job in CI** only runs on `lldap/lldap` — skipped on forks.
 - **Database schema** auto-migrates at startup (SeaORM). No manual migration needed.
+- **Multi-DB**: SQLite (default), PostgreSQL, and MariaDB/MySQL are all supported. Any DB schema or query changes must work across all three backends. SeaORM abstracts most differences, but raw SQL, migration scripts, and conflict handlers must be backend-compatible. Test migrations against all backends when possible.
 
 ## Architecture
 
@@ -104,3 +105,5 @@ Before considering work done:
 - **No over-engineered abstractions.** Don't create a trait for a two-method type used once. Every abstraction must reduce total cognitive load.
 - **Duplicate code is noise.** If logic appears in two places, extract it into a shared location.
 - **Match existing conventions.** When editing a file, mimic its import style, error handling pattern, and naming. Don't introduce a different pattern in the same module.
+- **Human-readable output.** Generated code should look like a human wrote it — clean formatting, logical grouping, descriptive names, and no mechanical boilerplate patterns. If it looks generated, it needs more polish.
+- **Multi-DB awareness.** Any change touching database queries, migrations, or schema must compile and pass tests across SQLite, PostgreSQL, and MariaDB/MySQL. Avoid backend-specific SQL or SeaORM API calls that don't work uniformly.
