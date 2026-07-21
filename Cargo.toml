@@ -10,12 +10,12 @@ default-members = ["server"]
 resolver = "2"
 
 [workspace.package]
-authors = ["Valentin Tolmer <valentin@tolmer.fr>"]
-documentation = "https://github.com/lldap/lldap"
+authors = ["Mitchell Franklin"]
+documentation = "https://github.com/mitchelljfranklin/mitch-lldap"
 edition = "2024"
-homepage = "https://github.com/lldap/lldap"
+homepage = "https://github.com/mitchelljfranklin/mitch-lldap"
 license = "GPL-3.0-only"
-repository = "https://github.com/lldap/lldap"
+repository = "https://github.com/mitchelljfranklin/mitch-lldap"
 rust-version = "1.91.0"
 
 [profile.release]

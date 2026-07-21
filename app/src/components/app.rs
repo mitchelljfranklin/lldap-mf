@@ -329,18 +329,12 @@ impl App {
               <span>{format!("LLDAP version {}", env!("CARGO_PKG_VERSION"))}</span>
             </div>
             <div>
-              <a href="https://github.com/lldap/lldap" aria-label="GitHub">
+              <a href="https://github.com/mitchelljfranklin/mitch-lldap" aria-label="GitHub">
                 <i class="bi-github"></i>
-              </a>
-              <a href="https://discord.gg/h5PEdRMNyP" aria-label="Discord">
-                <i class="bi-discord"></i>
-              </a>
-              <a href="https://twitter.com/nitnelave1?ref_src=twsrc%5Etfw" aria-label="Twitter">
-                <i class="bi-twitter"></i>
               </a>
             </div>
             <div>
-              <span>{"License "}<a href="https://github.com/lldap/lldap/blob/main/LICENSE">{"GNU GPL"}</a></span>
+              <span>{"License "}<a href="https://github.com/mitchelljfranklin/mitch-lldap/blob/main/LICENSE">{"GNU GPL"}</a></span>
             </div>
           </footer>
         }
